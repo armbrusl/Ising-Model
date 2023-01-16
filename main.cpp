@@ -18,7 +18,7 @@ using namespace std::chrono_literals;	 // ns, us, ms, s, h, etc.
 	 std::array<int, 300 * 300> nodes;
 
 	 float energy_difference = 0, r = 0, magnetization = 0, energy = 0, magnitude_variable_change = 0.005, seed = 0;
-	 int spin = 0, nspins = 0, length = 0, evals = 0;
+	 int spin = 0, nspins = 0, length = 0, evals = 0, size_of_change = 10;
 	 int* node = (int*)S;
 	 std::string result, sText;
 
@@ -140,29 +140,32 @@ using namespace std::chrono_literals;	 // ns, us, ms, s, h, etc.
 		if (GetMouse(0).bHeld)
 		{
 			int mouse_pos[2] = { int(GetMouseX()), int(GetMouseY()) };
-			for (int i = 0; i < 10; i++)
-			{
-				for (int j = 0; j < 10; j++)
+
+			if(mouse_pos[0] > size_of_change && mouse_pos[1] > size_of_change && mouse_pos[0] < L- size_of_change && mouse_pos[1] < L- size_of_change)
+				for (int i = 0; i < size_of_change; i++)
 				{
-					S[mouse_pos[0] + i][mouse_pos[1] + j] = 1;
+					for (int j = 0; j < size_of_change; j++)
+					{
+						S[mouse_pos[0] + i][mouse_pos[1] + j] = 1;
+					}
 				}
-			}
 
 
 		}
 
-		if (GetMouse(1).bHeld)
-		{
-			int mouse_pos[2] = { int(GetMouseX()), int(GetMouseY()) };
-
-			for (int i = 0; i < 10; i++)
+		
+			if (GetMouse(1).bHeld)
 			{
-				for (int j = 0; j < 10; j++)
-				{
-					S[mouse_pos[0] + i][mouse_pos[1] + j] = -1;
-				}
+				int mouse_pos[2] = { int(GetMouseX()), int(GetMouseY()) };
+				if (mouse_pos[0] > size_of_change && mouse_pos[1] > size_of_change && mouse_pos[0] < L - size_of_change && mouse_pos[1] < L - size_of_change)
+					for (int i = 0; i < size_of_change; i++)
+					{
+						for (int j = 0; j < size_of_change; j++)
+						{
+							S[mouse_pos[0] + i][mouse_pos[1] + j] = -1;
+						}
+					}
 			}
-		}
 	}
  
  	bool OnUserUpdate(float fElapsedTime) override
