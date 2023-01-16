@@ -136,60 +136,33 @@ using namespace std::chrono_literals;	 // ns, us, ms, s, h, etc.
 
 	void mouse_input()
 	{
+
 		if (GetMouse(0).bHeld)
 		{
-			int mouse_pos[2] = {int(GetMouseX()), int(GetMouseY())};
-			int color = -1 * S[mouse_pos[0]][mouse_pos[1]];
-
+			int mouse_pos[2] = { int(GetMouseX()), int(GetMouseY()) };
 			for (int i = 0; i < 10; i++)
 			{
 				for (int j = 0; j < 10; j++)
 				{
-					int color = -1 * S[mouse_pos[0] + i][mouse_pos[1] + j];
-					Draw(mouse_pos[0] + i, mouse_pos[1] + j, olc::Pixel(color * 255, color * 255, color * 255));
-
 					S[mouse_pos[0] + i][mouse_pos[1] + j] = 1;
-
-
 				}
-
-
 			}
 
-			Draw(mouse_pos[0], mouse_pos[1], olc::Pixel(color * 255, color * 255, color * 255));
-
-			S[mouse_pos[0]][mouse_pos[1]] = -1 * S[mouse_pos[0]][mouse_pos[1]];
 
 		}
 
 		if (GetMouse(1).bHeld)
 		{
 			int mouse_pos[2] = { int(GetMouseX()), int(GetMouseY()) };
-			int color = -1 * S[mouse_pos[0]][mouse_pos[1]];
 
 			for (int i = 0; i < 10; i++)
 			{
 				for (int j = 0; j < 10; j++)
 				{
-					int color = -1 * S[mouse_pos[0] + i][mouse_pos[1] + j];
-					Draw(mouse_pos[0] + i, mouse_pos[1] + j, olc::Pixel(color * 255, color * 255, color * 255));
-
 					S[mouse_pos[0] + i][mouse_pos[1] + j] = -1;
-
-
 				}
-
-
 			}
-
-			Draw(mouse_pos[0], mouse_pos[1], olc::Pixel(color * 255, color * 255, color * 255));
-
-			S[mouse_pos[0]][mouse_pos[1]] = -1 * S[mouse_pos[0]][mouse_pos[1]];
-
 		}
-
-
-
 	}
  
  	bool OnUserUpdate(float fElapsedTime) override
