@@ -1,7 +1,9 @@
-# Ising-Model
+# Ising-Model-2D
 
 In order for this code to work add the header file (olcPixelGameEngine.h) found at https://github.com/OneLoneCoder/olcPixelGameEngine.
 <br /> <br />
+
+The Energy (E=...) and Magnetization (M=...) are printed out continuously. <br />
 
 Commands one can use so far:
 
